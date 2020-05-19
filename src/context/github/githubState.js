@@ -12,6 +12,20 @@ import{
     GET_REPOS
 } from '../types';
 
+let githubClientId, githubClientSecret;
+if(process.env.NODE_ENV!=='production')
+{
+    githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID
+    githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET
+
+}
+else{
+    githubClientId = process.env.GITHUB_CLIENT_ID
+    githubClientSecret = process.env.GITHUB_CLIENT_SECRET
+
+}
+
+
 
 
 const GithubState=props=>{
@@ -25,7 +39,7 @@ const GithubState=props=>{
     // get all users when page loads
     const getAllUsers=async()=>{
         setLoading(true);
-        const res= await Axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+        const res= await Axios.get(`https://api.github.com/users?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`);
         dispatch({
             type:GET_ALL_USERS,
             payload:res.data
@@ -34,7 +48,7 @@ const GithubState=props=>{
     // search users
     const searchUsers=async text=>{
         setLoading(true);
-        const res=await Axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+        const res=await Axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`);
         console.log(res.data.items)
         dispatch({
             type:SEARCH_USERS,
@@ -45,7 +59,7 @@ const GithubState=props=>{
       // get single User info
     const getUser=async userName=>{
         console.log("In single user search"+userName)
-        const res=await Axios.get(`https://api.github.com/users/${userName}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+        const res=await Axios.get(`https://api.github.com/users/${userName}?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`);
         dispatch({
             type:GET_USER,
             payload:res.data
@@ -55,7 +69,7 @@ const GithubState=props=>{
     const getUserRepos=async userName=>{
         console.log("In single user search"+userName)
         setLoading();
-        const res=await Axios.get(`https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+        const res=await Axios.get(`https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc&client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`);
         console.log(res)
         dispatch({
             type:GET_REPOS,
