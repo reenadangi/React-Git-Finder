@@ -1,9 +1,8 @@
-import React, { Fragment,useState,useEffect,useContext,useRef } from 'react';
+import React, { Fragment,useEffect,useContext } from 'react';
 import './App.css';
 import Navbar from './components/layout/Navbar'
 import Users from './components/users/Users'
 import Search from './components/users/Search'
-import Axios from 'axios';
 import Alert from './components/layout/Alert'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import About from './components/pages/About';
@@ -20,20 +19,10 @@ const App =()=> {
   const githubContext = useContext(GithubContex);
 
 useEffect(() => {
-  githubContext.getAllUsers();
+  // githubContext.getAllUsers();
   console.log("show on load")
 }, [githubContext]);
 
-
-  //   useEffect(() => {
-  //   (async function gitData() {
-  //     // const githubContext=useContext(GithubContex);
-  //     // githubContext.getAllUsers();
-  //   })();
-  // }, []);
- 
-  
-  
   return (
     <GithubState> 
       <AlertState>
@@ -60,8 +49,8 @@ useEffect(() => {
             </Switch>
         </div>
       </div>
-   </Router>
-   </AlertState>
+    </Router>
+    </AlertState>
     </GithubState>            
   );
   

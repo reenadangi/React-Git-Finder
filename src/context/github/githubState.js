@@ -21,10 +21,11 @@ const GithubState=props=>{
     }
     const [state,dispatch]=useReducer(GithubReducer,initialState);
     // get all users when page loads
-    const getAllUsers=()=>{
+    const getAllUsers=async text=>{
         setLoading(true);
-        const res=Axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-        console.log(res.data)
+        const res= await Axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+        
+        console.log("in get all users",res.data)
         dispatch({
             type:GET_ALL_USERS,
             payload:res.data
