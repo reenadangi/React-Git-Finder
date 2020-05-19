@@ -11,7 +11,13 @@ const userStyle={
 const Users=()=> {
     const githubContext=useContext(GithubContex);
     useEffect(()=>{
-        githubContext.getAllUsers("All");
+        console.log(githubContext.users.length)
+       if (githubContext.users.length===0){
+        githubContext.getAllUsers();
+
+       }
+        // githubContext.Users.length>0
+       
     },[]);
    
     if(githubContext.loading){

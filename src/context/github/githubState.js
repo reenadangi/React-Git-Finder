@@ -1,4 +1,4 @@
-// it will hold our actions
+// It will hold our actions
 import React,{useReducer} from 'react';
 import Axios from 'axios';
 import GithubContext from './githubContext';
@@ -10,7 +10,9 @@ import{
     CLEAR_USERS,
     GET_USER,
     GET_REPOS
-} from '../types'
+} from '../types';
+
+
 
 const GithubState=props=>{
     const initialState={
@@ -21,11 +23,9 @@ const GithubState=props=>{
     }
     const [state,dispatch]=useReducer(GithubReducer,initialState);
     // get all users when page loads
-    const getAllUsers=async text=>{
+    const getAllUsers=async()=>{
         setLoading(true);
         const res= await Axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-        
-        console.log("in get all users",res.data)
         dispatch({
             type:GET_ALL_USERS,
             payload:res.data
@@ -42,7 +42,6 @@ const GithubState=props=>{
         })
     }
 
-    // get user
       // get single User info
     const getUser=async userName=>{
         console.log("In single user search"+userName)

@@ -1,6 +1,5 @@
 // it will hold our actions
 import React,{useReducer} from 'react';
-import Axios from 'axios';
 import AlertContext from './alertContext';
 import AlertReducer from './alertReducer';
 import{

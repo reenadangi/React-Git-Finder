@@ -31,7 +31,7 @@ const User= ({match})=> {
         // const {repos}=this.props
         return (
             <Fragment>
-            <Link to='/' className='btn btn-light'>
+            <Link to='/' className='btn btn-dark badge'>
               Back To Search
             </Link>
             Hireable:{' '}
@@ -41,7 +41,7 @@ const User= ({match})=> {
               <i className='fas fa-times-circle text-danger' />
             )}
             <div className='card grid-2'>
-              <div className='all-center'>
+              <div className='all-center '>
                 <img
                   src={avatar_url}
                   className='round-img'
@@ -58,7 +58,7 @@ const User= ({match})=> {
                     <p>{bio}</p>
                   </Fragment>
                 )}
-                <a href={html_url} className='btn btn-dark my-1'>
+                <a href={html_url} className='btn badge btn-dark my-1'>
                   Visit Github Profile
                 </a>
                 <ul>
